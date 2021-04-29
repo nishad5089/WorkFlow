@@ -9,6 +9,7 @@ import javax.persistence.*;
 
 /**
  * @author Nazim Uddin Asif
+ * @author Abdur Rahim Nishad
  * @since 1.0.0
  */
 @Getter

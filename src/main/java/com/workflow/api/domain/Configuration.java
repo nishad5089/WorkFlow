@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Nazim Uddin Asif
@@ -14,6 +15,7 @@ import java.util.List;
  */
 @Getter
 @Setter
+@Accessors(chain = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name = "configurations")
@@ -23,7 +25,7 @@ public class Configuration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "maker_id", nullable = false)
     private Maker maker;
 
@@ -39,4 +41,7 @@ public class Configuration {
     private LabelLogic labelLogic;
 
     private int maxCheckerNo;
+
+    @OneToMany(mappedBy = "configuration")
+    private Set<Mapper> mappers;
 }

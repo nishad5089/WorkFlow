@@ -10,10 +10,12 @@ import java.util.Set;
 
 /**
  * @author Nazim Uddin Asif
+ * @author Abdur Rahim Nishad
  * @since 1.0.0
  */
 @Getter
 @Setter
+@Accessors(chain = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name = "tasks")
@@ -26,6 +28,8 @@ public class Task {
     private int priority;
     @Enumerated(EnumType.STRING)
     private TaskState state;
-    private String owner;
-    private String assignee;
+    @OneToMany(mappedBy = "task")
+    Set<Mapper> mappers;
+//    private String owner;
+//    private String assignee;
 }
